@@ -26,7 +26,7 @@ namespace pbpb {
 
             Pcs.Add( PubgControls.btnStart, new PubgControl( PubgControls.btnStart.ToString(),
                                                     (ulong) PubgControls.btnStart,
-                                                    30, 487, 142, 525 ) );
+                                                    40, 480, 181, 520 ) ); //g
 
             Pcs.Add( PubgControls.btnExit, new PubgControl( PubgControls.btnExit.ToString(),
                                                     (ulong) PubgControls.btnExit,
@@ -34,19 +34,19 @@ namespace pbpb {
 
             Pcs.Add( PubgControls.labAlive, new PubgControl( PubgControls.labAlive.ToString(),
                                                     (ulong) PubgControls.labAlive,
-                                                    916, 20, 940, 30 ) );
+                                                    920, 20, 936, 30 ) ); //g
 
             Pcs.Add( PubgControls.labJoined, new PubgControl( PubgControls.labJoined.ToString(),
                                                     (ulong) PubgControls.labJoined,
-                                                    912, 20, 936, 30 ) );
+                                                    912, 20, 933, 30 ) ); //g
 
             Pcs.Add( PubgControls.labEject, new PubgControl( PubgControls.labEject.ToString(),
                                                     (ulong) PubgControls.labEject,
-                                                    554, 304, 580, 321 ) );
+                                                    562, 311, 576, 316 ) ); //g
 
             Pcs.Add( PubgControls.labReleaseParachute, new PubgControl( PubgControls.labReleaseParachute.ToString(),
                                                     (ulong) PubgControls.labReleaseParachute,
-                                                    595, 311, 635, 316 ) );
+                                                    614, 312, 635, 316 ) ); //g
 
             Pcs.Add( PubgControls.btnMatchCanContinue, new PubgControl( PubgControls.btnMatchCanContinue.ToString(),
                                                     (ulong) PubgControls.btnMatchCanContinue,
@@ -185,10 +185,11 @@ namespace pbpb {
                 
                 while (true) {
                     try {
-                        if (IsPres( Keys.PrintScreen )) {
+                        if (IsPres(Keys.PrintScreen))
+                        {
 
-                            string fn = @"E:\Pictures\Scr\" + PubgRound.GetRewardName() + ".jpg";
-                            SGraph.Scr( fn, 0, 0, 0, 0, true );
+                            string fn = @"D:\Pictures\Scr\" + PubgRound.GetRewardName() + ".jpg";
+                            SGraph.Scr(fn, 0, 0, 0, 0, true);
                             Thread.Sleep(1500);
                             //string msg = "Bot " + ( !BotIsStopped ? "stopped" : "launched" );
                             //if (!BotIsStopped) {
@@ -203,6 +204,10 @@ namespace pbpb {
                             //tray.BalloonTipText = msg;
                             //tray.ShowBalloonTip( 2000 );
                             //Thread.Sleep( 3000 );
+                        }
+                        else if (IsPres(Keys.Left) || IsPres(Keys.Right))
+                        {
+                            PubgRound.ManualWait = false;
                         }
                     }
                     catch (Exception e) {
@@ -224,8 +229,9 @@ namespace pbpb {
                  scr = new Bitmap(full_scr_filename);
             else
                  scr = SGraph.Scr("", PubgWindow.Width, PubgWindow.Height, PubgWindow.PosX, PubgWindow.PosY);
+
             Init_Pcs();
-            PubgControl pc = Pcs[PubgControls.labReleaseParachute];
+            PubgControl pc = Pcs[PubgControls.labReleaseParachute]; //!!! T !!!
             pc.ControlImageFromImage(scr);          
             int dist = pc.CalcDistance(true);
 

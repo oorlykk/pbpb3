@@ -11,6 +11,8 @@ namespace pbpb
 {
     public static class PubgRound {
 
+        public static bool ManualWait;
+
         public static bool IsLive;
 
         public static int StartedTime;
@@ -66,7 +68,7 @@ namespace pbpb
         public static void Set() {
 
             if (IsLive) return;
-          
+                    
             IsLive = true; 
             StartedTime = Environment.TickCount;                   
             RewardSaved = false;
@@ -76,6 +78,7 @@ namespace pbpb
             Form1.PubgInput.ParachuteClickedTime = int.MaxValue;
             Form1.PubgInput.DownClickedTime = int.MaxValue;
             Form1.Analytics.IncMatchLive();
+            ManualWait = false;
 
             Log.Add("New Round Set.");
         }

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using Imagehasher;
 using SnLib;
 using Win32;
 
@@ -14,12 +15,12 @@ namespace pbpb
 
     public enum PubgControls : ulong {
 
-        btnStart = 18410924907680276608,
+        btnStart = 18446730828029623295, //good
         btnExit = 18410913813996339328,
-        labAlive = 2531622108017255652,
-        labJoined = 18374403900871474942,
-        labEject = 105924403798016,
-        labReleaseParachute = 13671979250605947648,
+        labAlive = 11212717976561620373,
+        labJoined = 8734793291481758776,
+        labEject = 13112222588321969152,
+        labReleaseParachute = 3942821996307308032,
         btnMatchCanContinue =  18410856832886014080,
         btnMatchCanContinueCancel = 18410856824799264896,
         labWater = 882281628581721955,
@@ -116,7 +117,7 @@ namespace pbpb
 
             if (rehash) CalcHash();
 
-            LastDistance = ImageHasher.ImageHasher.ComputeHammingDistance(ComparableHash, ControlImageHash);
+            LastDistance = ImageHasher.ComputeHammingDistance(ComparableHash, ControlImageHash);
 
             return LastDistance;
 
@@ -124,7 +125,7 @@ namespace pbpb
 
         public ulong CalcHash() {
 
-            m_ControlImageHash = ImageHasher.ImageHasher.ComputeAverageHash( ControlImage );
+            m_ControlImageHash = ImageHasher.ComputeAverageHash( ControlImage );
             return m_ControlImageHash;
             
         }

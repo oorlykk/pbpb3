@@ -175,27 +175,27 @@ namespace pbpb
                             Pcs[PubgControls.btnConfirmExit].ClickLeftMouse( "click ConfirmExit" );
                         
                     }
+                    
+                    //else if (ps.HasFlags( PubgStatuses.Eject)) {
 
-                    else if (ps.HasFlags( PubgStatuses.Eject)) {
+                    //    Log.Append( " di: " + Pcs[PubgControls.labEject].LastDistance.ToString() );
 
-                        Log.Append( " di: " + Pcs[PubgControls.labEject].LastDistance.ToString() );
+                    //    if (Setti.UseEject) {
 
-                        if (Setti.UseEject) {
+                    //        Thread.Sleep( RND.Next( 5, 8 ) * 1000 );
 
-                            Thread.Sleep( RND.Next( 5, 8 ) * 1000 );
+                    //        PubgInput.Eject();
+                    //        PubgInput.Forward();
+                    //    }
+                    //}
 
-                            PubgInput.Eject();
-                            PubgInput.Forward();
-                        }
-                    }
+                    //else if (ps.HasFlags( PubgStatuses.Parachute)) {
 
-                    else if (ps.HasFlags( PubgStatuses.Parachute)) {
+                    //    Log.Append( " di: " + Pcs[PubgControls.labReleaseParachute].LastDistance.ToString() );
 
-                        Log.Append( " di: " + Pcs[PubgControls.labReleaseParachute].LastDistance.ToString() );
-
-                        PubgInput.Parachute();
-                        PubgInput.Forward();
-                    }
+                    //    PubgInput.Parachute();
+                    //    PubgInput.Forward();
+                    //}
 
                     else if (ps.HasFlags( PubgStatuses.Prepare)) {
 
@@ -227,16 +227,19 @@ namespace pbpb
                         //    PubgInput.Forward();
                         //}
 
-                        if (Environment.TickCount - PubgRound.StartedTime > (15*1000) &&
-                            Environment.TickCount - PubgRound.StartedTime < (21*1000))
-                            if (Setti.UseEject) {
+                        if (Environment.TickCount - PubgRound.StartedTime > 1000 * 40 &&
+                            Environment.TickCount - PubgRound.StartedTime < 1000 * 45)                      
+                            if (Setti.UseEject)
+                            {
 
                                 PubgInput.Eject();
-                                PubgInput.Forward();
                             }
+                            
 
-                        if (Environment.TickCount - PubgRound.StartedTime > (1000*60)*2 &&
-                            Environment.TickCount - PubgRound.StartedTime < (1000*60)*4) {
+                        if (
+                            (Environment.TickCount - PubgRound.StartedTime > OneMin + 5000) &&
+                            (Environment.TickCount - PubgRound.StartedTime < OneMin + 15000)
+                           ) {
 
                             int bX = Setti.PubgWindowAbsoluteX;
                             int bY = Setti.PubgWindowAbsoluteY;
@@ -247,20 +250,22 @@ namespace pbpb
                             PubgWindow.SetupWindow();
                             PubgWindow.Window.SetForegorund();
                             PubgWindow.AlertUser();
-                        
-                            int t = Environment.TickCount;
-                            while (Environment.TickCount - t < 130000) Thread.Sleep(10);
+                            PubgRound.ManualWait = true;
+
+                            //int t = Environment.TickCount;                           
+                            while (PubgRound.ManualWait) Thread.Sleep(10);
 
                             Setti.PubgWindowAbsoluteX = bX;
                             Setti.PubgWindowAbsoluteY = bY;
                             
                         }
 
-                        // End match on MaxRoundTime
-                        if (Environment.TickCount - PubgRound.StartedTime > Setti.MaxRoundTimeRnd) {
+                        //End match on MaxRoundTime
+                        if (Environment.TickCount - PubgRound.StartedTime > Setti.MaxRoundTimeRnd)
+                        {
 
-                            Log.Add( "MaxRoundTime trig! try exit =>" );
-                            PubgInput.KeyPress( Keys.Escape );
+                            Log.Add("MaxRoundTime trig! try exit =>");
+                            PubgInput.KeyPress(Keys.Escape);
 
                             Thread.Sleep(1500);
                             Pcs[PubgControls.btnConfirmExit].ClickLeftMouse("click ConfirmExit (@==@)");
@@ -268,7 +273,7 @@ namespace pbpb
                             Thread.Sleep(1500);
                             Pcs[PubgControls.btnConfirmExit].ClickLeftMouse("click ConfirmExit");
 
-                            Log.Add( ".end" );
+                            Log.Add(".end");
                         }
                     }
 

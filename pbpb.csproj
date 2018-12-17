@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>pbpb</RootNamespace>
     <AssemblyName>pbpb</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -88,9 +88,17 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>pbpb.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageHasher">
+      <HintPath>E:\CSharp\ImageHasher\ImageHasher.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SnLib">
+      <HintPath>E:\CSharp\SnLib\SnLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -104,20 +112,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="ImageHasher">
-      <HintPath>..\..\ImageHasher\ImageHasher.dll</HintPath>
-      <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Win32">
-      <HintPath>..\..\Win32\Win32.dll</HintPath>
+      <HintPath>E:\CSharp\Win32\Win32.dll</HintPath>
       <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="SnLib">
-      <HintPath>..\..\SnLib\SnLib.dll</HintPath>
-      <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -189,13 +186,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\Win32\Win32.dll" />
+    <EmbeddedResource Include="Resources\Win32.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\ImageHasher\ImageHasher.dll" />
+    <EmbeddedResource Include="Resources\ImageHasher.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\SnLib\SnLib.dll" />
+    <EmbeddedResource Include="Resources\SnLib.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gray.ico" />

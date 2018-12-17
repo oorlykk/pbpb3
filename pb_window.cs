@@ -108,12 +108,7 @@ public static void ShutdownExecute()
 
    public static class PubgWindow {
 
-        public static void AlertUser() {
-
-            System.IO.Stream str = Properties.Resources.icq_message;
-            System.Media.SoundPlayer snd = new System.Media.SoundPlayer( str );
-            snd.Play();
-        }
+        public static void AlertUser() => new System.Media.SoundPlayer(Properties.Resources.icq_message).Play();
 
         public static int BorderSize_Left => Form1._BorderSize_Left; //SWindow.GetAdjustWindowBorderSizes( Handle ).Left;
         public static int BorderSize_Top => Form1._BorderSize_Top; //SWindow.GetAdjustWindowBorderSizes( Handle ).Top;

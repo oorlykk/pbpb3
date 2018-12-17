@@ -20,6 +20,8 @@ namespace pbpb {
 
     public partial class Form1 : Form
     {
+        static bool _DEBUG = false;
+
         static string pp1 = "pbpb"; static string pp2 = "2018";
         static string uniq = ""; //"dGhleg==";
         public static System.Version AppVersion = Assembly.GetExecutingAssembly().GetName().Version;
@@ -89,11 +91,6 @@ namespace pbpb {
             Icon = Resources.gray;
             tray.Icon = Resources.gray;        
 
-            DateTime thisDate = DateTime.Today;
-            string date_convert1 = Convert.ToString( "30.09.2018" );
-            DateTime pDate = Convert.ToDateTime( date_convert1 );
-            int date_cmp_res = thisDate.CompareTo( pDate );
-            AppIsExp = ( date_cmp_res > 0 );
             panel_test.Visible = false;
             if (IsNormPC) {
                 //AppIsExp = false;
@@ -128,7 +125,7 @@ namespace pbpb {
             //if (IsInBlack()) Environment.FailFast(null, new DivideByZeroException());        
         }
 
-        public bool IsNormPC => (Environment.MachineName.ToUpper() == "thez-pc");
+        public bool IsNormPC => (Environment.MachineName.ToUpper() == "NORM");
 
         Assembly PubgLogEvent( object sender, ResolveEventArgs e ) {
 
@@ -379,7 +376,7 @@ namespace pbpb {
 
         private void Form1_FormClosing( object sender, FormClosingEventArgs e ) {
 
-            if (e.CloseReason == CloseReason.UserClosing) {
+            if (!_DEBUG && e.CloseReason == CloseReason.UserClosing) {
 
                 e.Cancel = true;
 
